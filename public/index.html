@@ -6,8 +6,36 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Snakes & Ladders</title>
     <link rel="stylesheet" href="styles.css">
+    <script src="https://cdn.socket.io/4.5.0/socket.io.min.js" integrity="sha384-7EyYLQZgWBi67fBtVxw60/OWl1kjsfrPFcaU0pp0nAh+i8FD068QogUvg85Ewy1k" crossorigin="anonymous"></script>
+    <script src="app.js" defer></script>
 </head>
 <body>
+    <div class="wrapper">
+        <!-- Login -->
+        <div id="loginBox">
+            <div>
+                <input type="text" placeholder="Username" id="username">
+                <br>
+                <button id="login">Enter</button>
+            </div>
+        </div>
+
+        <!-- Chat -->
+        <div>
+            <div><ul id="chatbox"></ul></div>
+            <button id="send">Send Message</button>
+            <input type="text" id="sendBox">
+        </div>
     
+        <hr>
+
+        <!-- Dice -->
+        <div>
+            <div class="dieContainer">
+                <div id="die">0</div>
+            </div>
+            <button id="roll">Roll</button>
+        </div>
+    </div>
 </body>
 </html>
