@@ -71,9 +71,6 @@ module.exports = class Board{
             return null;
         }
 
-        // switch to next player
-        this.cycleTurn();
-
         this.positions[id] += blocks;
         var block = this.positions[id];
 
@@ -98,6 +95,9 @@ module.exports = class Board{
             block = this.blocks - 1; // since we start at 0 we need to add an offset
             this.winner = id;
         }
+
+        // switch to next player
+        this.cycleTurn();
 
         return block;
     }

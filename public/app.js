@@ -122,6 +122,7 @@ Socket.on('winner', player => {
 
     } else{
         alert('You have lost!');
+        window.location.href = 'https://www.youtube.com/watch?v=dQw4w9WgXcQ&ab_channel=RickAstley';
     }
 });
 
