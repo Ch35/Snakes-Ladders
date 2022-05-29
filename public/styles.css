@@ -103,4 +103,17 @@ button:hover{
     height: 10px;
     width: 10px;
     border: 1px solid white;
+    display: inline-block;
+    float: right;
+}
+
+@media only screen and (max-width: 600px) {
+    #board{
+        width: 100%;
+    }
+    #board .block{
+        width: 35px;
+        height: 35px;
+        font-size: 8px;
+    }
 }
