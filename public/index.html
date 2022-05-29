@@ -12,9 +12,10 @@
 <body>
     <div class="wrapper">
         <!-- Login -->
-        <div id="loginBox">
+        <div id="loginBox" class="hidden">
             <div>
                 <input type="text" placeholder="Username" id="username">
+                <input type="text" placeholder="Colour" id="colour">
                 <br>
                 <button id="login">Enter</button>
             </div>
@@ -31,10 +32,22 @@
 
         <!-- Dice -->
         <div>
-            <div class="dieContainer">
-                <div id="die">0</div>
+            <button id="join">Join</button>
+            <button id="reset" class="hidden">Reset</button>
+
+            <div id="play" class="hidden">
+                <div class="dieContainer">
+                    <div id="die">0</div>
+                </div>
+                <button id="roll" class="hidden">Roll</button>
             </div>
-            <button id="roll">Roll</button>
+        </div>
+
+        <hr>
+
+        <!-- Board -->
+        <div id="board" class="hidden">
+            <svg id="lineBox"></svg>
         </div>
     </div>
 </body>

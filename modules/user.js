@@ -3,12 +3,15 @@
 var users = {};
 
 module.exports = class User{
-    constructor(name, colour = '#FFF'){
+    constructor(id, name, colour = '#FFF'){
+        this.id = id;
         this.name = name;
         this.colour = colour;
-        this.position = null;
         this.disconnected = false;
         this.messages = {};
+
+        // append user
+        users[id] = this;
     }
 
     /**
@@ -39,24 +42,26 @@ module.exports = class User{
 
     /**
      * Reconnects user
+     * @param {int} newId
      */
-    reconnect(){
+    reconnect(newId){
+        // replace index ID
+        delete users[this.id];
+
         this.disconnected = false;
+        this.id = newId;
+        
+        users[newId] = this;
     }
 
     /**
      * Disconnects user
+     * @param {Board} board
      */
-    disconnect(){
+    disconnect(board){
         this.disconnected = true;
-    }
 
-    /**
-     * Initializes block position
-     * @param {int} pos
-     */
-    initPosition(pos = 0){
-        this.position = pos;
+        board.playerLeave(this.id);
     }
 
     /**
@@ -75,15 +80,59 @@ module.exports = class User{
     static messages(usernameKey = false){
         var messages = {};
 
-        const users = this.list();
-
         for (var socketid in users){
             const user = users[socketid];
             const key = usernameKey ? user.name : socketid;
 
-            messages[key] = user.messages;
+            // generate list of temporary messages with the user's colour
+            var tempMsgs = {};
+            for(var timestamp in user.messages){
+                tempMsgs[timestamp] = {
+                    text: user.messages[timestamp],
+                    colour: user.colour,
+                };
+            }
+
+            messages[key] = tempMsgs;
         }
 
         return messages;
+    }
+
+    /**
+     * Finds user with specific username
+     * @param {string} username 
+     * @returns {object}
+     */
+    static find(username){
+        return Object.values(users).find((usr)=>{
+            return usr.name === username
+        });
+    }
+
+    /**
+     * Returns user
+     * @param {int} id 
+     * @returns {User}
+     */
+    static get(id){
+        if(users.hasOwnProperty(id)){
+            return users[id];
+        }
+
+        return null;
+    }
+
+    /**
+     * Deletes user
+     * @param {int} id 
+     */
+    static delete(id){
+        if(users.hasOwnProperty(id)){
+            delete users[id];
+
+        } else{
+            console.error('Missing user');
+        }
     }
 }

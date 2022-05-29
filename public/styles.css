@@ -16,6 +16,11 @@ input, button{
     border-radius: 10px;
     padding: 8px;
     border: none;
+    transition-duration: 0.3s;
+    transition-timing-function: ease-in-out;
+}
+button:hover{
+    background-color: #cccccc;
 }
 
 .dieContainer{
@@ -60,4 +65,42 @@ input, button{
     display: flex;
     margin: auto;
     flex-direction: column;
+}
+
+.hidden{
+    display: none;
+}
+
+#board{
+    border-radius: 5px;
+    border: 2px solid white;
+    padding: 10px;
+    background-color: black;
+    width: 50%;
+    margin: auto;
+    position: relative;
+}
+#board svg{
+    position: absolute;
+    top: 0px;
+    left: 0px;
+}
+#board .block{
+    width: 70px;
+    height: 70px;
+    padding: 5px;
+    display: inline-block;
+    border: 2px solid white;
+    background: #0e0e0e;
+    position: relative;
+}
+#board .block:nth-child(odd){
+    background-color: white;
+    color: #0e0e0e;
+    border-color: #0e0e0e;
+}
+#board .block .player{
+    height: 10px;
+    width: 10px;
+    border: 1px solid white;
 }
